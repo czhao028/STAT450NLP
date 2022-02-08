@@ -1,4 +1,4 @@
-name: condaenv
+name: STAT450NLP
 channels:
   - defaults
-prefix: C:\Users\chris\anaconda3\envs\condaenv\envs\condaenv
+prefix: C:\Users\chris\anaconda3\envs\STAT450NLP\envs\STAT450NLP
