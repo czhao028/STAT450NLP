@@ -1,0 +1,4 @@
+name: condaenv
+channels:
+  - defaults
+prefix: C:\Users\chris\anaconda3\envs\condaenv\envs\condaenv
