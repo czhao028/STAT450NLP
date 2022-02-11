@@ -11,7 +11,7 @@ def get_label_sent_for_category(category="train"):
     return_dict = {}
     for item in sst_dataset[category]:
         label, sent = item.to_labeled_lines()[0]
-        return_dict[sent] = label #labels sentence & sub-phrases. [0] gets entire sentence
+        return_dict[sent.lower()] = label #labels sentence & sub-phrases. [0] gets entire sentence
     return return_dict
 
 def get_train():
