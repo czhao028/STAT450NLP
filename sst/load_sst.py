@@ -3,13 +3,16 @@ import pytreebank
 import sys
 import os
 
-sst_dataset = pytreebank.load_sst('./raw_data')
+
+raw_data_path = os.path.join(sys.path[0], 'sst\\raw_data')
+sst_dataset = pytreebank.load_sst(raw_data_path)
 
 def get_label_sent_for_category(category="train"):
-    return_list = list()
+    return_dict = {}
     for item in sst_dataset[category]:
-        return_list.append(item.to_labeled_lines()[0]) #labels sentence & sub-phrases. [0] gets entire sentence
-    return return_list
+        label, sent = item.to_labeled_lines()[0]
+        return_dict[sent] = label #labels sentence & sub-phrases. [0] gets entire sentence
+    return return_dict
 
 def get_train():
     return get_label_sent_for_category("train")
@@ -18,3 +21,4 @@ def get_test():
 def get_dev():
     return get_label_sent_for_category("dev")
 
+#get_train()
