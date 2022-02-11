@@ -91,7 +91,7 @@ __label__4	Like the film 's almost anthropologically detailed realization of ear
 __label__2	While McFarlane 's animation lifts the film firmly above the level of other coming-of-age films ... it 's also so jarring that it 's hard to get back into the boys ' story .
 __label__4	If nothing else , this movie introduces a promising , unusual kind of psychological horror .
 __label__1	In a normal screen process , these bromides would be barely enough to sustain an interstitial program on the Discovery Channel .
-__label__4	But in Imax 3-D , the clichÃ©s disappear into the vertiginous perspectives opened up by the photography .
+__label__4	But in Imax 3-D , the clichés disappear into the vertiginous perspectives opened up by the photography .
 __label__4	Writer-director Burger imaginatively fans the embers of a dormant national grief and curiosity that has calcified into chronic cynicism and fear .
 __label__5	... a roller-coaster ride of a movie
 __label__3	I enjoyed Time of Favor while I was watching it , but I was surprised at how quickly it faded from my memory .
@@ -237,7 +237,7 @@ __label__2	Never mind whether you buy the stuff about Barris being a CIA hit man
 __label__5	The kooky yet shadowy vision Clooney sustains throughout is daring , inventive and impressive .
 __label__5	A triumph of art direction over narrative , but what art direction !
 __label__3	Behan himself knew how to spin a tale and one ca n't help but think he 'd appreciate this attempt to turn his life into art .
-__label__5	JirÃ­ Hubac 's script is a gem .
+__label__5	Jirí Hubac 's script is a gem .
 __label__5	His characters are engaging , intimate and the dialogue is realistic and greatly moving .
 __label__4	The scope of the Silberstein family is large and we grow attached to their lives , full of strength , warmth and vitality . .
 __label__5	Moore 's complex and important film is also , believe it or not , immensely entertaining , a David and Goliath story that 's still very much playing itself out .
@@ -273,7 +273,7 @@ __label__3	`` its successes are also tempered with elements which prove the dire
 __label__5	It 's solid and affecting and exactly as thought-provoking as it should be .
 __label__4	This is such a dazzlingly self-assured directorial debut that it 's hard to know what to praise first .
 __label__5	Parker holds true to Wilde 's own vision of a pure comedy with absolutely no meaning , and no desire to be anything but a polished , sophisticated entertainment that is in love with its own cleverness .
-__label__4	MÃ¼nch 's genuine insight makes the film 's occasional overindulgence forgivable .
+__label__4	Münch 's genuine insight makes the film 's occasional overindulgence forgivable .
 __label__3	Thankfully , the film , which skirts that rapidly deteriorating line between fantasy and reality ... takes a tongue-in-cheek attitude even as it pushes the Croc Hunter agenda .
 __label__3	Ultimately , the message of Trouble Every Day seems to be that all sexual desire disrupts life 's stasis .
 __label__5	If you 're like me , a sucker for a good old fashion romance and someone who shamelessly loves to eat , then Mostly Martha offers all the perfect ingredients to more than satisfy your appetite .
@@ -361,7 +361,7 @@ __label__3	Over-the-top and a bit ostentatious , this is a movie that 's got ood
 __label__4	... a poignant and powerful narrative that reveals that reading writing and arithmetic are not the only subjects to learn in life .
 __label__4	Nicely serves as an examination of a society in transition .
 __label__5	A tender and touching drama , based on the true story of a troubled African-American 's quest to come to terms with his origins , reveals the yearning we all have in our hearts for acceptance within the family circle .
-__label__4	As a randy film about sexy people in gorgeous places being pushed and pulled ( literally and figuratively ) by desire ... ( Sex and LucÃ­a ) makes for an arousing good time .
+__label__4	As a randy film about sexy people in gorgeous places being pushed and pulled ( literally and figuratively ) by desire ... ( Sex and Lucía ) makes for an arousing good time .
 __label__5	Celebrated at Sundance , this slight comedy of manners has winning performances and a glossy , glib charm that 's hard to beat .
 __label__5	Renner 's performance as Dahmer is unforgettable , deeply absorbing .
 __label__5	If no one singles out any of these performances as award-worthy , it 's only because we would expect nothing less from this bunch .
@@ -648,7 +648,7 @@ __label__3	The movie addresses a hungry need for PG-rated , nonthreatening famil
 __label__5	This warm and gentle romantic comedy has enough interesting characters to fill several movies , and its ample charms should win over the most hard-hearted cynics .
 __label__4	A yarn that respects the Marvel version without becoming ensnared by it .
 __label__5	This is a happy throwback to the time when cartoons were cinema 's most idiosyncratic form instead of one of its most predictable .
-__label__5	Complex , affecting and uniquely AlmodÃ³var , the film evokes strong emotions and pushes viewers to question their deepest notions of moral right and wrong .
+__label__5	Complex , affecting and uniquely Almodóvar , the film evokes strong emotions and pushes viewers to question their deepest notions of moral right and wrong .
 __label__4	Good ol' urban legend stuff .
 __label__2	Not so much a movie as a picture book for the big screen .
 __label__4	This is n't my favorite in the series , still I enjoyed it enough to recommend .
@@ -840,7 +840,7 @@ __label__5	The film often achieves a mesmerizing poetry .
 __label__4	More than makes up for its mawkish posing by offering rousing spates of genuine feeling .
 __label__1	It 's neither as romantic nor as thrilling as it should be .
 __label__4	But it offers plenty to ponder and chew on as its unusual relationship slowly unfolds .
-__label__5	Occasionally funny , always very colorful and enjoyably overblown in the traditional AlmodÃ³var style .
+__label__5	Occasionally funny , always very colorful and enjoyably overblown in the traditional Almodóvar style .
 __label__4	Merchant effectively translates Naipaul 's lively mix of characters from the page to screen .
 __label__4	Some movies are like a tasty hors-d'oeuvre ; this one is a feast .
 __label__4	What could have become just another cautionary fable is allowed to play out as a clever , charming tale -- as pleasantly in its own way as its self-dramatizing characters .
@@ -1194,7 +1194,7 @@ __label__1	Lame , haphazard teen comedy .
 __label__2	It 's the kind of movie that ends up festooning U.S. art house screens for no reason other than the fact that it 's in French ( well , mostly ) with English subtitles and is magically ` significant ' because of that .
 __label__1	This miserable excuse of a movie runs on empty , believing Flatbush machismo will get it through .
 __label__2	Expect to be reminded of other , better films , especially Seven , which director William Malone slavishly copies .
-__label__2	Nair stuffs the film with dancing , henna , ornamentation , and group song , but her narrative clichÃ©s and telegraphed episodes smell of old soap opera .
+__label__2	Nair stuffs the film with dancing , henna , ornamentation , and group song , but her narrative clichés and telegraphed episodes smell of old soap opera .
 __label__2	It 's getting harder and harder to ignore the fact that Hollywood is n't laughing with us , folks .
 __label__2	It 's laughing at us .
 __label__2	Might have been better off as a documentary , with less of Mr. Eyre 's uninspired dramatics and more of his sense of observation and outrage .
@@ -1439,7 +1439,7 @@ __label__2	This is a particularly toxic little bonbon , palatable to only a chos
 __label__1	This is n't just the CliffsNotes version of Nicholas Nickleby , it 's the CliffsNotes with pages missing .
 __label__2	Considering the harsh locations and demanding stunts , this must have been a difficult shoot , but the movie proves rough going for the audience as well .
 __label__1	Better at putting you to sleep than a sound machine .
-__label__2	So clichÃ©d that , at one point , they literally upset an apple cart .
+__label__2	So clichéd that , at one point , they literally upset an apple cart .
 __label__4	It 's a decent glimpse into a time period , and an outcast , that is no longer accessible , but it does n't necessarily shed more light on its subject than the popular predecessor .
 __label__3	It might be the first sci-fi comedy that could benefit from a Three 's Company-style laugh track .
 __label__2	When the plot kicks in , the film loses credibility .
@@ -1829,7 +1829,7 @@ __label__2	An unsatisfying hybrid of Blair Witch and typical stalk-and-slash far
 __label__2	Say this for the soundtrack , it drowns out the lousy dialogue .
 __label__2	After seeing SWEPT AWAY , I feel sorry for Madonna .
 __label__2	Instead of kicking off the intrigue and suspense and mystery of the whole thing , Hart 's War , like the St. Louis Rams in the Super Bowl , waits until after halftime to get started .
-__label__1	A gob of drivel so sickly sweet , even the eager consumers of Moore 's pasteurized ditties will retch it up like rancid crÃ¨me brÃ»lÃ©e .
+__label__1	A gob of drivel so sickly sweet , even the eager consumers of Moore 's pasteurized ditties will retch it up like rancid crème brûlée .
 __label__2	Maudlin and melodramatic we expected .
 __label__2	Boring we did n't .
 __label__2	Never quite transcends jokester status ... and the punchline does n't live up to Barry 's dead-eyed , perfectly chilled delivery .
@@ -2170,7 +2170,7 @@ __label__2	A woozy , roisterous , exhausting mess , and the off-beat casting of 
 __label__2	` Abandon all hope , ye who enter here ' ... you should definitely let Dante 's gloomy words be your guide .
 __label__3	What begins as a seemingly brainless , bubbly romantic comedy becomes a cliche-drenched melodrama by mid-film and , by film 's end , a feminist action fantasy .
 __label__2	A grim , flat and boring werewolf movie that refuses to develop an energy level .
-__label__2	Birot 's directorial debut ( she co-wrote the script with Christophe HonorÃ© ) is n't so much bad as it is bland .
+__label__2	Birot 's directorial debut ( she co-wrote the script with Christophe Honoré ) is n't so much bad as it is bland .
 __label__1	Watching the film is like reading a Times Portrait of Grief that keeps shifting focus to the journalist who wrote it .
 __label__2	Enough similarities to Gymkata and Howie Long 's Firestorm that my fingernails instinctively crawled towards my long-suffering eyeballs .
 __label__4	Succeeds in providing a disquiet world the long-dreaded completion of the Police Academy series .
