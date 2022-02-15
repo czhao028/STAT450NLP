@@ -1,5 +1,7 @@
 import sst.load_sst
 import pickle as pk
+import re
+
 train_sst = sst.load_sst.get_train()
 train_x = list(train_sst.keys())
 train_y = list(train_sst.values())
