@@ -2,6 +2,7 @@
 import pytreebank
 import sys
 import os
+import tensorflow as tf
 
 out_path = os.path.join(sys.path[0], 'sst_{}.txt')
 dataset = pytreebank.load_sst('./raw_data')
