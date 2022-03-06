@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pickle as pk
 
+# creating training and testing sets as pandas dataframes
 train_x = pk.load(open( "./data/train_x.pk", "rb" ))
 train_y = pk.load(open( "./data/train_y.pk", "rb" ))
 
@@ -14,6 +15,8 @@ df_test_x = pd.DataFrame(test_x)
 
 df_test_y.rename(columns={0: 'Rating'}, inplace=True)
 df_train_y.rename(columns={0: 'Rating'}, inplace=True)
+
+# Exploratory data analysis
 
 # print(df_train_y[0].unique(), df_test_y[0].unique())
 # print(df_train_y.mode() + 1)
