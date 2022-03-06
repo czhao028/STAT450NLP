@@ -16,4 +16,4 @@ for category in ['train', 'test', 'dev']:
                 item.to_labeled_lines()[0][1]
             ))
 # Print the length of the training set
-print(len(dataset['train']))
+print(len(dataset['train']), len(dataset['test']))
