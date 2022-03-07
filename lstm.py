@@ -27,13 +27,38 @@ def read_glove_vector(glove_vec):
       word_to_vec_map[curr_word] = np.array(w_line[1:], dtype=np.float64)
   return word_to_vec_map
 
-word_to_vec_map = read_glove_vector('/content/drive/My Drive/glove.6B.50d.txt')
 
-maxLen = 150
+def imdb_rating(input_shape):
+
+  X_indices = Input(input_shape)
+
+  embeddings = embedding_layer(X_indices)
+
+  X = LSTM(128, return_sequences=True)(embeddings)
+
+  X = Dropout(0.6)(X)
+
+  X = LSTM(128, return_sequences=True)(X)
+
+  X = Dropout(0.6)(X)
+
+  X = LSTM(128)(X)
+
+  X = Dense(1, activation='sigmoid')(X)
+
+  model = Model(inputs=X_indices, outputs=X)
+
+  return model
+
+tokenizer = Tokenizer(num_words=5000)
+tokenizer.fit_on_texts(train_x)
+words_to_index = tokenizer.word_index
+
+word_to_vec_map = read_glove_vector('glove.840B.300d.txt')
+maxLen = 300
 
 vocab_len = len(words_to_index)
 embed_vector_len = word_to_vec_map['moon'].shape[0]
-
 emb_matrix = np.zeros((vocab_len, embed_vector_len))
 
 for word, index in words_to_index.items():

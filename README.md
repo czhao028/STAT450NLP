@@ -15,6 +15,9 @@ Next, run `conda activate STAT450NLP` in the command line (cmd on Windows) to ac
 
 Finally, you'll need to install **pytreebank** to use the Stanford Treebank Dataset (under the folder **sst**) functions in Python. With the conda environment activated in either cmd or Pycharm, run `conda install pip` then `pip install pytreebank`. This extra step is because *pytreebank* and others are examples of libraries only offered through pip.
 
+#### Supplementary Dataset
+To run the LSTM code, you will need to download the GloVe pretrained vectors from [here](https://huggingface.co/stanfordnlp/glove/resolve/main/glove.840B.300d.zip). This is 2GB and will need to be extracted into the main project directory.
+
 ## Updating the Project
 
 To make sure conda environments are consistent across laptops, make sure to run 
