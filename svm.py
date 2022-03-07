@@ -13,7 +13,7 @@ import time
 t1 = time.time()
 pipeline = Pipeline(
     [
-        ('vect', CountVectorizer()),
+        ('vect', CountVectorizer(stop_words="english")),
         ('tfidf', TfidfTransformer()),
         ('clf', SGDClassifier(
             loss='hinge',
