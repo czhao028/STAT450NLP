@@ -9,12 +9,10 @@ As of 2/20 Naive Bayes & SVM with CountVectorizer have been completed.
 
 ## Project Setup
 
-We exclusively use conda environments for this project. To recreate ours, run `conda create --name STAT450NLP --file spec-file.txt`. Make sure the Python version in this environment is 3.8.
-To ensure consistent Anaconda versions, the one we used for this repo was Anaconda3-2021.05-Windows-x86_64.exe from the [Anaconda archive](https://repo.anaconda.com/archive/).
-
-Next, run `conda activate STAT450NLP` in the command line (cmd on Windows) to activate the conda environment. If working in Pycharm, use [this link](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html) to connect the existing Conda environment as an interpreter.
-
-Finally, you'll need to install **pytreebank** to use the Stanford Treebank Dataset (under the folder **sst**) functions in Python. With the conda environment activated in either cmd or Pycharm, run `conda install pip` then `pip install pytreebank`. This extra step is because *pytreebank* and others are examples of libraries only offered through pip.
+` pip install virtualenv `(if you don't already have virtualenv installed)
+` virtualenv venv ` to create your new environment (called 'venv' here)
+` source venv/bin/activate ` to enter the virtual environment
+` pip install -r requirements.txt ` to install the requirements in the current environment
 
 #### Supplementary Dataset
 To run the LSTM code, you will need to download the GloVe pretrained vectors from [here](https://huggingface.co/stanfordnlp/glove/resolve/main/glove.840B.300d.zip). This is 2GB and will need to be extracted into the main project directory.
