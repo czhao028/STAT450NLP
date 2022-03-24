@@ -18,7 +18,7 @@ Run ` venv/Scripts/activate ` to enter the virtual environment
 ` pip install -r requirements.txt ` to install the requirements in the current environment
 
 #### Supplementary Dataset
-To run the LSTM code, you will need to download the GloVe pretrained vectors from [here](https://huggingface.co/stanfordnlp/glove/resolve/main/glove.840B.300d.zip). This is 2GB and will need to be extracted into the main project directory.
+To run the LSTM code, you will need to download the GloVe pretrained vectors from [here](https://www.kaggle.com/datasets/watts2/glove6b50dtxt). This file is quite large and will need to be extracted into the main project directory.
 
 ## Updating the Project
 

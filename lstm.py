@@ -6,7 +6,8 @@ from sklearn.metrics import classification_report,confusion_matrix,accuracy_scor
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
+from keras.layers import Embedding, LSTM, SpatialDropout1D, LSTM, Activation, Dropout, Dense, Input
+from keras.models import Model
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 train_x = pk.load(open( "./data/train_x.pk", "rb" ))
@@ -14,6 +15,7 @@ train_y = pk.load(open( "./data/train_y.pk", "rb" ))
 
 test_x = pk.load(open( "./data/test_x.pk", "rb" ))
 test_y = pk.load(open( "./data/test_y.pk", "rb" ))
+
 import time
 t1 = time.time()
 
@@ -24,7 +26,10 @@ def read_glove_vector(glove_vec):
     for line in f:
       w_line = line.split()
       curr_word = w_line[0]
-      word_to_vec_map[curr_word] = np.array(w_line[1:], dtype=np.float64)
+      try:
+        word_to_vec_map[curr_word] = np.array(w_line[1:], dtype=np.float64)
+      except Exception as e:
+        print(curr_word, e)
   return word_to_vec_map
 
 
@@ -50,11 +55,11 @@ def imdb_rating(input_shape):
 
   return model
 
-tokenizer = Tokenizer(num_words=5000)
+tokenizer = Tokenizer()
 tokenizer.fit_on_texts(train_x)
 words_to_index = tokenizer.word_index
 
-word_to_vec_map = read_glove_vector('glove.840B.300d.txt')
+word_to_vec_map = read_glove_vector('glove.6B.50d.txt')
 maxLen = 300
 
 vocab_len = len(words_to_index)
@@ -64,6 +69,6 @@ emb_matrix = np.zeros((vocab_len, embed_vector_len))
 for word, index in words_to_index.items():
   embedding_vector = word_to_vec_map.get(word)
   if embedding_vector is not None:
-    emb_matrix[index, :] = embedding_vector
+    emb_matrix[index-1, :] = embedding_vector
 
 embedding_layer = Embedding(input_dim=vocab_len, output_dim=embed_vector_len, input_length=maxLen, weights = [emb_matrix], trainable=False)
