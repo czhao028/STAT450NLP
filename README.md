@@ -22,6 +22,5 @@ To run the LSTM code, you will need to download the GloVe pretrained vectors fro
 
 ## Updating the Project
 
-To make sure conda environments are consistent across laptops, make sure to run 
-1. `conda list --explicit > spec-file.txt` whenever you install a new package
-2. `conda install --name STAT450NLP --file spec-file.txt` whenever you pull from Github. This updates your environment with all the packages that've been installed by others.
+1. When pulling changes from origin: ` pip install -r requirements.txt `
+2. When updating packages: ` pip freeze > requirements.txt `
