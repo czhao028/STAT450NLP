@@ -9,7 +9,8 @@ As of 2/20 Naive Bayes & SVM with CountVectorizer have been completed.
 
 ## Project Setup
 
-We exclusively use conda environments for this project. To recreate ours, run `conda create --name STAT450NLP --file spec-file.txt`.
+We exclusively use conda environments for this project. To recreate ours, run `conda create --name STAT450NLP --file spec-file.txt`. Make sure the Python version in this environment is 3.8.
+To ensure consistent Anaconda versions, the one we used for this repo was Anaconda3-2021.05-Windows-x86_64.exe from the [Anaconda archive](https://repo.anaconda.com/archive/).
 
 Next, run `conda activate STAT450NLP` in the command line (cmd on Windows) to activate the conda environment. If working in Pycharm, use [this link](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html) to connect the existing Conda environment as an interpreter.
 

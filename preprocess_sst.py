@@ -9,7 +9,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 stop_words = stopwords.words('english')
 
-
+from gensim.scripts.glove2word2vec import glove2word2vec
 
 lemmatizer = WordNetLemmatizer()
 def cleaning(train_x_list, stop_words):
