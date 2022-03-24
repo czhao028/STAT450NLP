@@ -11,10 +11,10 @@ from keras.models import Model
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 train_x = pk.load(open( "./data/train_x.pk", "rb" ))
-train_y = pk.load(open( "./data/train_y.pk", "rb" ))
+train_y = np.array(pk.load(open( "./data/train_y.pk", "rb" )))
 
 test_x = pk.load(open( "./data/test_x.pk", "rb" ))
-test_y = pk.load(open( "./data/test_y.pk", "rb" ))
+test_y = np.array(pk.load(open( "./data/test_y.pk", "rb" )))
 
 import time
 t1 = time.time()
@@ -31,29 +31,6 @@ def read_glove_vector(glove_vec):
       except Exception as e:
         print(curr_word, e)
   return word_to_vec_map
-
-
-def imdb_rating(input_shape):
-
-  X_indices = Input(input_shape)
-
-  embeddings = embedding_layer(X_indices)
-
-  X = LSTM(128, return_sequences=True)(embeddings)
-
-  X = Dropout(0.6)(X)
-
-  X = LSTM(128, return_sequences=True)(X)
-
-  X = Dropout(0.6)(X)
-
-  X = LSTM(128)(X)
-
-  X = Dense(1, activation='sigmoid')(X)
-
-  model = Model(inputs=X_indices, outputs=X)
-
-  return model
 
 tokenizer = Tokenizer()
 tokenizer.fit_on_texts(train_x)
@@ -72,3 +49,24 @@ for word, index in words_to_index.items():
     emb_matrix[index-1, :] = embedding_vector
 
 embedding_layer = Embedding(input_dim=vocab_len, output_dim=embed_vector_len, input_length=maxLen, weights = [emb_matrix], trainable=False)
+
+lstm_out = 196
+model = Sequential()
+model.add(embedding_layer)
+model.add(SpatialDropout1D(0.4))
+model.add(LSTM(lstm_out, dropout=0.2, recurrent_dropout=0.2))
+model.add(Dense(2,activation='softmax')) #if sigmoid, will only give you 0 --> 1, rather than multiclass
+model.compile(loss = 'categorical_crossentropy', optimizer='adam',metrics = ['accuracy'])
+
+#convert training & testing sentences into GloVe word embeddings
+X_train_indices = tokenizer.texts_to_sequences(train_x)
+X_train_indices = pad_sequences(X_train_indices, maxlen=maxLen, padding='post')
+X_test_indices = tokenizer.texts_to_sequences(test_x)
+X_test_indices = pad_sequences(X_test_indices, maxlen=maxLen, padding='post')
+
+batch_size = 32
+model.fit(X_train_indices, train_y, epochs = 7, batch_size=batch_size, verbose = 2)
+score, acc = model.evaluate(X_test_indices, test_y, verbose=2, batch_size=batch_size)
+#score,acc = model.evaluate(test_x, test_y, verbose = 2, batch_size = batch_size)
+print("score: %.2f" % (score))
+print("acc: %.2f" % (acc))
