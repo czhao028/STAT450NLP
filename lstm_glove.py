@@ -11,10 +11,10 @@ from keras.models import Model
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 train_x = pk.load(open( "./data/train_x.pk", "rb" ))
-train_y = np.array(pk.load(open( "./data/train_y.pk", "rb" )))
+train_y_1 = np.array(pk.load(open( "./data/train_y.pk", "rb" )))
 
 test_x = pk.load(open( "./data/test_x.pk", "rb" ))
-test_y = np.array(pk.load(open( "./data/test_y.pk", "rb" )))
+test_y_1 = np.array(pk.load(open( "./data/test_y.pk", "rb" )))
 
 import time
 t1 = time.time()
@@ -39,23 +39,26 @@ words_to_index = tokenizer.word_index
 word_to_vec_map = read_glove_vector('glove.6B.50d.txt')
 maxLen = 300
 
-vocab_len = len(words_to_index)
+vocab_len = len(words_to_index) + 1
 embed_vector_len = word_to_vec_map['moon'].shape[0]
 emb_matrix = np.zeros((vocab_len, embed_vector_len))
 
 for word, index in words_to_index.items():
   embedding_vector = word_to_vec_map.get(word)
   if embedding_vector is not None:
-    emb_matrix[index-1, :] = embedding_vector
+    emb_matrix[index, :] = embedding_vector
 
 embedding_layer = Embedding(input_dim=vocab_len, output_dim=embed_vector_len, input_length=maxLen, weights = [emb_matrix], trainable=False)
 
-lstm_out = 196
+lstm_out = 13
 model = Sequential()
 model.add(embedding_layer)
-model.add(SpatialDropout1D(0.4))
-model.add(LSTM(lstm_out, dropout=0.2, recurrent_dropout=0.2))
-model.add(Dense(2,activation='softmax')) #if sigmoid, will only give you 0 --> 1, rather than multiclass
+"""
+DONT USE GLOVE: just use others' settings for embeddings
+"""
+#model.add(SpatialDropout1D(0.4))
+model.add(LSTM(lstm_out))
+model.add(Dense(5,activation='softmax')) #if sigmoid, will only give you 0 --> 1, rather than multiclass
 model.compile(loss = 'categorical_crossentropy', optimizer='adam',metrics = ['accuracy'])
 
 #convert training & testing sentences into GloVe word embeddings
@@ -64,9 +67,14 @@ X_train_indices = pad_sequences(X_train_indices, maxlen=maxLen, padding='post')
 X_test_indices = tokenizer.texts_to_sequences(test_x)
 X_test_indices = pad_sequences(X_test_indices, maxlen=maxLen, padding='post')
 
+train_y_np = np.zeros((train_y_1.size, train_y_1.max()+1))
+train_y_np[np.arange(train_y_1.size),train_y_1] = 1
+test_y_np = np.zeros((test_y_1.size, test_y_1.max()+1))
+test_y_np[np.arange(test_y_1.size),test_y_1] = 1
+
 batch_size = 32
-model.fit(X_train_indices, train_y, epochs = 7, batch_size=batch_size, verbose = 2)
-score, acc = model.evaluate(X_test_indices, test_y, verbose=2, batch_size=batch_size)
+model.fit(X_train_indices, train_y_np, epochs = 5)
+score, acc = model.evaluate(X_test_indices, test_y_np)
 #score,acc = model.evaluate(test_x, test_y, verbose = 2, batch_size = batch_size)
 print("score: %.2f" % (score))
 print("acc: %.2f" % (acc))
