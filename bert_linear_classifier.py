@@ -3,6 +3,7 @@ import pandas as pd
 from transformers import BertTokenizer, TFBertForSequenceClassification, InputExample, InputFeatures
 import os
 import pickle as pk
+import bert
 
 model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
@@ -26,20 +27,26 @@ df_test = pd.concat([df_test_y.reset_index(drop=True), df_test_x], axis=1)
 df_test.rename(columns = {0: 'Sentence'}, inplace = True)
 
 df_train = pd.concat([df_train_y.reset_index(drop=True), df_train_x], axis=1)
+df_train.rename(columns = {0: 'Sentence'}, inplace = True)
 df_test.rename(columns = {0: 'Sentence'}, inplace = True)
 
-#def data_to_examples(training, testing, data_column, label_column):
-#    train_InputExamples = training.apply(lambda x: InputExample(guid=None, text_a = x[data_column],
-#                                                          text_b = None, label = x[label_column]), axis = 1)
+def data_to_examples(training, testing, data_column, label_column):
+    train_InputExamples = training.apply(lambda x: InputExample(guid=None, text_a = x[data_column],
+                                                          text_b = None, label = x[label_column]), axis = 1)
 
-    #validation_InputExamples = testing.apply(lambda x: InputExample(guid=None, text_a = x[data_column],
-    #                                                      text_b = None, label = x[label_column]), axis = 1)
-#    return train_InputExamples, y
+    validation_InputExamples = testing.apply(lambda x: InputExample(guid=None, text_a = x[data_column],
+                                                          text_b = None, label = x[label_column]), axis = 1)
+    return train_InputExamples, validation_InputExamples
 
-#train_InputExamples = data_to_examples(df_train, df_test, 0, 1)
+train_InputExamples, validationInputExamples = data_to_examples(df_train, df_test, 0, 1)
 
-#train_InputExamples = df_train.apply(lambda x: InputExample(guid=None, text_a = x[0],
-#                                                          text_b = None, label = x[1]), axis = 1)
 
-#print(train_InputExamples.head())
-print(df_train[0].head())
+# We'll set sequences to be at most 128 tokens long.
+max_length = 128
+# Convert our train and test features to InputFeatures that BERT understands.
+train_features = bert.run_classifier.convert_examples_to_features(train_InputExamples, label_list, max_length, tokenizer)
+test_features = bert.run_classifier.convert_examples_to_features(test_InputExamples, label_list, max_length, tokenizer)
+
+print(train_features)
+
+print(tokenizer.tokenize("This here's an example of using the BERT tokenizer"))

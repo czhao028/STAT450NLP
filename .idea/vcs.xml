@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/fine-grained-sentiment" vcs="Git" />
+    <mapping directory="$USER_HOME$/PycharmProjects/SentimentAnalysis" vcs="Git" />
   </component>
 </project>
