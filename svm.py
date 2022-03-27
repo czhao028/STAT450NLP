@@ -1,6 +1,6 @@
 from sklearn.metrics import classification_report, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer, TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 import pickle as pk
@@ -13,8 +13,8 @@ import time
 t1 = time.time()
 pipeline = Pipeline(
     [
-        ('vect', CountVectorizer(stop_words="english")),
-        ('tfidf', TfidfTransformer()),
+        ('vect', TfidfVectorizer(stop_words="english")),
+#        ('tfidf', TfidfTransformer()),
         ('clf', SGDClassifier(
             loss='hinge',
             penalty='l2',

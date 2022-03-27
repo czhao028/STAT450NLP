@@ -13,7 +13,7 @@ As of 2/20 Naive Bayes & SVM with CountVectorizer have been completed.
 
 ` virtualenv venv ` to create your new environment (called 'venv' here)
 
-Run ` venv/Scripts/activate ` to enter the virtual environment
+Run ` .\venv\Scripts\activate ` to enter the virtual environment
 
 ` pip install -r requirements.txt ` to install the requirements in the current environment
 

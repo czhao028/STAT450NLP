@@ -1,7 +1,8 @@
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer, TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report
 from sklearn.metrics import ConfusionMatrixDisplay
+
 import matplotlib.pyplot as plt
 import pickle as pk
 import time
@@ -24,9 +25,7 @@ test_y = pk.load(open("./data/test_y.pk", "rb"))
 
 t1 = time.time()
 
-vec = CountVectorizer(stop_words='english')
-
-
+vec = TfidfVectorizer(stop_words='english')
 
 train_x = vec.fit_transform(train_x).toarray()
 train_x = np.where(train_x > 1, 1, train_x)
