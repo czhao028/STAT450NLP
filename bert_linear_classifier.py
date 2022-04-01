@@ -1,12 +1,16 @@
 import tensorflow as tf
+import tensorflow_hub as hub
+import tensorflow_text as text
+#from official.nlp import optimization  # to create AdamW optimizer
+import matplotlib.pyplot as plt
+import bert
 import pandas as pd
 from transformers import BertTokenizer, TFBertForSequenceClassification, InputExample, InputFeatures
 import os
 import pickle as pk
-import bert
 
-model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+#model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
+#tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 
 # creating training and testing sets as pandas dataframes
 train_x = pk.load(open( "./data/train_x.pk", "rb" ))
@@ -30,23 +34,29 @@ df_train = pd.concat([df_train_y.reset_index(drop=True), df_train_x], axis=1)
 df_train.rename(columns = {0: 'Sentence'}, inplace = True)
 df_test.rename(columns = {0: 'Sentence'}, inplace = True)
 
-def data_to_examples(training, testing, data_column, label_column):
-    train_InputExamples = training.apply(lambda x: InputExample(guid=None, text_a = x[data_column],
-                                                          text_b = None, label = x[label_column]), axis = 1)
+# Preprocessing, modeling, and results
+bert_preprocess_model = hub.KerasLayer("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
 
-    validation_InputExamples = testing.apply(lambda x: InputExample(guid=None, text_a = x[data_column],
-                                                          text_b = None, label = x[label_column]), axis = 1)
-    return train_InputExamples, validation_InputExamples
+text_test = ['this is such an amazing movie!']
+text_preprocessed = bert_preprocess_model(text_test)
 
-train_InputExamples, validationInputExamples = data_to_examples(df_train, df_test, 0, 1)
+bert_model = hub.KerasLayer('https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-128_A-2/2')
+bert_results = bert_model(text_preprocessed)
 
+def build_bert_classifier():
+  text_input = tf.keras.layers.Input(shape=(), dtype=tf.string, name='text')
+  tfhub_handle_preprocess = "https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3"
+  tfhub_handle_encoder = 'https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-128_A-2/2'
+  preprocessing_layer = hub.KerasLayer(tfhub_handle_preprocess, name='preprocessing')
+  encoder_inputs = preprocessing_layer(text_input)
+  encoder = hub.KerasLayer(tfhub_handle_encoder, trainable=True, name='BERT_encoder')
+  outputs = encoder(encoder_inputs)
+  net = outputs['pooled_output']
+  net = tf.keras.layers.Dropout(0.1)(net)
+  net = tf.keras.layers.Dense(1, activation=None, name='classifier')(net)
+  return tf.keras.Model(text_input, net)
 
-# We'll set sequences to be at most 128 tokens long.
-max_length = 128
-# Convert our train and test features to InputFeatures that BERT understands.
-train_features = bert.run_classifier.convert_examples_to_features(train_InputExamples, label_list, max_length, tokenizer)
-test_features = bert.run_classifier.convert_examples_to_features(test_InputExamples, label_list, max_length, tokenizer)
+classifier_model = build_bert_classifier()
+bert_raw_result = classifier_model(tf.constant(text_test))
+print(tf.sigmoid(bert_raw_result))
 
-print(train_features)
-
-print(tokenizer.tokenize("This here's an example of using the BERT tokenizer"))
