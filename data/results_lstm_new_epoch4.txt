@@ -1,0 +1,12 @@
+Epoch 1/4
+240/240 [==============================] - 52s 207ms/step - loss: 1.5561 - accuracy: 0.3082 - val_loss: 1.5867 - val_accuracy: 0.3021
+Epoch 2/4
+240/240 [==============================] - 50s 207ms/step - loss: 1.2939 - accuracy: 0.4507 - val_loss: 1.4527 - val_accuracy: 0.3501
+Epoch 3/4
+240/240 [==============================] - 50s 210ms/step - loss: 0.9199 - accuracy: 0.6359 - val_loss: 1.4610 - val_accuracy: 0.3782
+Epoch 4/4
+240/240 [==============================] - 51s 211ms/step - loss: 0.6016 - accuracy: 0.7988 - val_loss: 1.6556 - val_accuracy: 0.3548
+70/70 [==============================] - 2s 31ms/step - loss: 1.6536 - accuracy: 0.3910
+score: 1.65
+acc: 0.39
+Total time executing 205.58998131752014

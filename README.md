@@ -3,9 +3,10 @@
 Welcome to the repository for Laura Jabr & Christine Zhao's Senior Capstone Project at Rice University!
 
 Here we implement various ML methods for sentiment analysis. This includes Naive Bayes with sklearn's CountVectorizer, SVM with sklearn's CountVectorizer & BERT word embeddings, 
-linear classifier with BERT word embeddings, and LSTM with GloVe word embeddings.
+LSTM with 100-dimension embeddings, and linear classifier with BERT sentence embeddings.
 
 As of 2/20 Naive Bayes & SVM with CountVectorizer have been completed.
+As of 3/27 LSTM has been completed.
 
 ## Project Setup
 
@@ -13,12 +14,9 @@ As of 2/20 Naive Bayes & SVM with CountVectorizer have been completed.
 
 ` virtualenv venv ` to create your new environment (called 'venv' here)
 
-Run ` venv/Scripts/activate ` to enter the virtual environment
+Run ` .\venv\Scripts\activate ` to enter the virtual environment
 
 ` pip install -r requirements.txt ` to install the requirements in the current environment
-
-#### Supplementary Dataset
-To run the LSTM code, you will need to download the GloVe pretrained vectors from [here](https://www.kaggle.com/datasets/watts2/glove6b50dtxt). This file is quite large and will need to be extracted into the main project directory.
 
 ## Updating the Project
 

@@ -1,0 +1,36 @@
+C:\Users\chris\OneDrive\Documents\STAT450SeniorCapstone\venv\Scripts\python.exe C:/Users/chris/OneDrive/Documents/STAT450SeniorCapstone/lstm_new.py
+2022-03-26 11:23:28.132171: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2022-03-26 11:23:28.132524: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+Found 13961 unique tokens.
+Shape of training data tensor: (8534, 300)
+Shape of testing data tensor: (2210, 300)
+2022-03-26 11:23:36.202208: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+2022-03-26 11:23:36.202535: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-03-26 11:23:36.209523: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: LAPTOP-FU7V4V1A
+2022-03-26 11:23:36.210106: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: LAPTOP-FU7V4V1A
+2022-03-26 11:23:36.210947: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1/10
+240/240 [==============================] - 63s 250ms/step - loss: 1.5397 - accuracy: 0.3165 - val_loss: 1.4789 - val_accuracy: 0.3841
+Epoch 2/10
+240/240 [==============================] - 62s 258ms/step - loss: 1.2429 - accuracy: 0.4509 - val_loss: 1.3554 - val_accuracy: 0.3946
+Epoch 3/10
+240/240 [==============================] - 56s 233ms/step - loss: 0.9153 - accuracy: 0.6435 - val_loss: 1.5063 - val_accuracy: 0.3806
+Epoch 4/10
+240/240 [==============================] - 60s 250ms/step - loss: 0.6066 - accuracy: 0.7993 - val_loss: 1.6590 - val_accuracy: 0.3806
+Epoch 5/10
+240/240 [==============================] - 59s 246ms/step - loss: 0.3993 - accuracy: 0.8740 - val_loss: 1.8902 - val_accuracy: 0.3525
+Epoch 6/10
+240/240 [==============================] - 60s 249ms/step - loss: 0.2714 - accuracy: 0.9182 - val_loss: 2.0743 - val_accuracy: 0.3724
+Epoch 7/10
+240/240 [==============================] - 53s 222ms/step - loss: 0.1988 - accuracy: 0.9413 - val_loss: 2.3690 - val_accuracy: 0.3443
+Epoch 8/10
+240/240 [==============================] - 67s 278ms/step - loss: 0.1492 - accuracy: 0.9576 - val_loss: 2.5639 - val_accuracy: 0.3337
+Epoch 9/10
+240/240 [==============================] - 53s 222ms/step - loss: 0.1201 - accuracy: 0.9665 - val_loss: 2.6880 - val_accuracy: 0.3361
+Epoch 10/10
+240/240 [==============================] - 54s 224ms/step - loss: 0.1010 - accuracy: 0.9714 - val_loss: 2.7452 - val_accuracy: 0.3384
+70/70 [==============================] - 2s 34ms/step - loss: 2.7878 - accuracy: 0.3692
+score: 2.79
+acc: 0.37
+Total time executing 590.5360286235809

@@ -2,7 +2,7 @@ import pickle as pk
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from collections import Counter
-from sklearn.metrics import classification_report,confusion_matrix,accuracy_score
+from sklearn.metrics import classification_report,confusion_matrix,accuracy_score, ConfusionMatrixDisplay
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
@@ -98,9 +98,28 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 
 model.fit(train_x_np, train_y_np, epochs = epochs, batch_size=batch_size, validation_split=0.1)
-score, acc = model.evaluate(test_x_np, test_y_np)
+
+# score, acc = model.evaluate(test_x_np, test_y_np)
 #score,acc = model.evaluate(test_x, test_y, verbose = 2, batch_size = batch_size)
-print("score: %.2f" % (score))
-print("acc: %.2f" % (acc))
+# print("score: %.2f" % (score))
+# print("acc: %.2f" % (acc))
+pred_y_decimal = model.predict(test_x_np) #ROUND pred_y - highest value in each row is 1, all others are 0
+pred_y = np.zeros_like(pred_y_decimal)
+pred_y[np.arange(len(pred_y_decimal)), pred_y_decimal.argmax(1)] = 1
+
+print(classification_report(test_y_np, pred_y))
+
+pred_y_list = pred_y.argmax(1)
+
+disp = ConfusionMatrixDisplay.from_predictions(test_y_1, pred_y_list,
+    display_labels=list(range(1, 6)),
+    cmap=plt.cm.Blues,
+    normalize="true")
+
+disp.ax_.set_title("Normalized Confusion Matrix: LSTM")
+print(disp.confusion_matrix)
+plt.savefig("lstm_confusion.png")
+plt.show()
+
 
 print("Total time executing", time.time() - t1)
