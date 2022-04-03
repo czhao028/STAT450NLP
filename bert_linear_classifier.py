@@ -8,6 +8,7 @@ import pandas as pd
 from transformers import BertTokenizer, TFBertForSequenceClassification, InputExample, InputFeatures
 import os
 import pickle as pk
+import time
 
 # creating training and testing sets as pandas dataframes
 train_x = pk.load(open( "./data/train_x.pk", "rb" ))
@@ -33,10 +34,11 @@ df_test.rename(columns = {0: 'Sentence'}, inplace = True)
 
 numeric_feature_names = ["Rating"]
 numeric_features = df_train[numeric_feature_names]
+sentence = df_train.pop('Sentence')
 
-target = df_train.pop('Sentence')
-
-training_df = tf.data.Dataset.from_tensor_slices((dict(numeric_features), target))
+# Heterogenous data in dataframe -> tf dataset requires a dictionary
+training_df = tf.data.Dataset.from_tensor_slices((dict(numeric_features), sentence))
+t1 = time.time()
 
 # Preprocessing, modeling, and results
 bert_preprocess_model = hub.KerasLayer("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
@@ -60,8 +62,10 @@ batch_size = 32
 seed = 42
 
 classifier_model = build_bert_classifier()
-#bert_raw_result = classifier_model(tf.constant(text_test))
-#print(tf.sigmoid(bert_raw_result))
+
+# test case to see if untrained classifier is working
+bert_raw_result = classifier_model(tf.constant(["text_test"]))
+print(tf.sigmoid(bert_raw_result))
 
 loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)
 metrics = tf.metrics.Accuracy()
@@ -73,7 +77,7 @@ steps_per_epoch = tf.data.experimental.cardinality(training_df).numpy()
 num_train_steps = steps_per_epoch * epochs
 num_warmup_steps = int(0.1*num_train_steps)
 
-init_lr = 3e-5
+init_lr = 3e-5 # original bert paper says to use this value
 optimizer = optimization.create_optimizer(init_lr=init_lr,
                                           num_train_steps=num_train_steps,
                                           num_warmup_steps=num_warmup_steps,
@@ -93,3 +97,26 @@ classifier_model.compile(optimizer=optimizer,
 
 #print(f'Loss: {loss}')
 #print(f'Accuracy: {accuracy}')
+
+# Confusion Matrix and Runtime
+# ------------------------------------------------------------------------------
+pred_y_decimal = model.predict(test_x_np) #ROUND pred_y - highest value in each row is 1, all others are 0
+pred_y = np.zeros_like(pred_y_decimal)
+pred_y[np.arange(len(pred_y_decimal)), pred_y_decimal.argmax(1)] = 1
+
+print(classification_report(test_y_np, pred_y))
+
+pred_y_list = pred_y.argmax(1)
+
+disp = ConfusionMatrixDisplay.from_predictions(test_y_1, pred_y_list,
+    display_labels=list(range(1, 6)),
+    cmap=plt.cm.Blues,
+    normalize="true")
+
+disp.ax_.set_title("Normalized Confusion Matrix: BERT")
+print(disp.confusion_matrix)
+plt.savefig("bert_confusion.png")
+plt.show()
+
+
+print("Total time executing", time.time() - t1)
