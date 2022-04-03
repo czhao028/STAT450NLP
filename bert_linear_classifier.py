@@ -79,11 +79,13 @@ optimizer = optimization.create_optimizer(init_lr=init_lr,
                                           num_warmup_steps=num_warmup_steps,
                                           optimizer_type='adamw')
 
+# not sure why this won't compile -- this is all that's left to do !
+
 classifier_model.compile(optimizer=optimizer,
                          loss=loss,
                          metrics=metrics)
 
-#history = classifier_model.fit(x=train_ds,
+#history = classifier_model.fit(x=training_df,
 #                               validation_data=val_ds,
 #                               epochs=epochs)
 
