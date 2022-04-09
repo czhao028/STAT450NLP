@@ -14,12 +14,21 @@ from torch.utils.data import Dataset, DataLoader
 from transformers import BertPreTrainedModel, BertModel
 from transformers import AutoConfig, AutoTokenizer
 
-
 checkpoint = "bert-large-uncased"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 
-dataset = load_dataset("sst", "default", encoding='latin-1')
+dataset = load_dataset("SetFit/sst5", "default")
+max_length = 128
+
+# coercing huggingface dataset to torch format
+tokenizer = AutoTokenizer.from_pretrained('bert-base-cased')
+dataset = dataset.map(lambda e: tokenizer(e['text'], truncation=True, padding='max_length'), batched=True)
+dataset.set_format(type='torch', columns=['input_ids', 'token_type_ids', 'attention_mask', 'label'])
+dataloader = torch.utils.data.DataLoader(dataset, batch_size=32)
+
+# creating train, test, validation
 train = dataset["train"]
 test = dataset["test"]
 validation = dataset["validation"]
+
 
