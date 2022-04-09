@@ -32,17 +32,19 @@ df_train = pd.concat([df_train_y.reset_index(drop=True), df_train_x], axis=1)
 df_train.rename(columns = {0: 'Sentence'}, inplace = True)
 df_test.rename(columns = {0: 'Sentence'}, inplace = True)
 
-numeric_feature_names = ["Rating"]
+numeric_feature_names = ["Sentence"]
 numeric_features = df_train[numeric_feature_names]
-sentence = df_train.pop('Sentence')
+rating = df_train.pop('Rating')
 
 # Heterogenous data in dataframe -> tf dataset requires a dictionary
-training_df = tf.data.Dataset.from_tensor_slices((dict(numeric_features), sentence))
+training_df = tf.data.Dataset.from_tensor_slices(df_train.to_dict(orient="list"))
+#print(training_df)
 t1 = time.time()
 
 # Preprocessing, modeling, and results
 bert_preprocess_model = hub.KerasLayer("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
-bert_model = hub.KerasLayer('https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-128_A-2/2')
+bert_model = hub.KerasLayer('https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-512_A-8/1')
+
 
 def build_bert_classifier():
   text_input = tf.keras.layers.Input(shape=(), dtype=tf.string, name='text')
@@ -61,14 +63,32 @@ AUTOTUNE = tf.data.AUTOTUNE
 batch_size = 32
 seed = 42
 
+
 classifier_model = build_bert_classifier()
 
 # test case to see if untrained classifier is working
-bert_raw_result = classifier_model(tf.constant(["text_test"]))
-print(tf.sigmoid(bert_raw_result))
+
+# text_preprocessed = bert_preprocess_model(["text_test or else another."])
+# bert_results = bert_model(text_preprocessed)
+#
+# print(f'Keys       : {list(text_preprocessed.keys())}')
+# print(f'Shape      : {text_preprocessed["input_word_ids"].shape}')
+# print(f'Word Ids   : {text_preprocessed["input_word_ids"][0, :12]}')
+# print(f'Input Mask : {text_preprocessed["input_mask"][0, :12]}')
+# print(f'Type Ids   : {text_preprocessed["input_type_ids"][0, :12]}')
+#
+# print(f'Pooled Outputs Shape:{bert_results["pooled_output"].shape}')
+# print(f'Pooled Outputs Values:{bert_results["pooled_output"][0, :12]}')
+# print(f'Sequence Outputs Shape:{bert_results["sequence_output"].shape}')
+# print(f'Sequence Outputs Values:{bert_results["sequence_output"][0, :12]}')
+#
+# bert_raw_result = classifier_model(tf.constant(["text_test or else another."]))
+# print(tf.sigmoid(bert_raw_result))
+
+# Loss and metrics defined
 
 loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)
-metrics = tf.metrics.Accuracy()
+metrics = tf.metrics.SparseCategoricalAccuracy()
 
 epochs = 5
 # ---------------------------------------------------------------
@@ -84,10 +104,9 @@ optimizer = optimization.create_optimizer(init_lr=init_lr,
                                           optimizer_type='adamw')
 
 # not sure why this won't compile -- this is all that's left to do !
-
-classifier_model.compile(optimizer=optimizer,
-                         loss=loss,
-                         metrics=metrics)
+# classifier_model.compile(optimizer=optimizer,
+#                          loss=loss,
+#                          metrics=metrics)
 
 #history = classifier_model.fit(x=training_df,
 #                               validation_data=val_ds,
@@ -100,23 +119,23 @@ classifier_model.compile(optimizer=optimizer,
 
 # Confusion Matrix and Runtime
 # ------------------------------------------------------------------------------
-pred_y_decimal = model.predict(test_x_np) #ROUND pred_y - highest value in each row is 1, all others are 0
-pred_y = np.zeros_like(pred_y_decimal)
-pred_y[np.arange(len(pred_y_decimal)), pred_y_decimal.argmax(1)] = 1
+#pred_y_decimal = model.predict(test_x_np) #ROUND pred_y - highest value in each row is 1, all others are 0
+#pred_y = np.zeros_like(pred_y_decimal)
+#pred_y[np.arange(len(pred_y_decimal)), pred_y_decimal.argmax(1)] = 1
 
-print(classification_report(test_y_np, pred_y))
+#print(classification_report(test_y_np, pred_y))
 
-pred_y_list = pred_y.argmax(1)
+#pred_y_list = pred_y.argmax(1)
 
-disp = ConfusionMatrixDisplay.from_predictions(test_y_1, pred_y_list,
-    display_labels=list(range(1, 6)),
-    cmap=plt.cm.Blues,
-    normalize="true")
+#disp = ConfusionMatrixDisplay.from_predictions(test_y_1, pred_y_list,
+#    display_labels=list(range(1, 6)),
+#    cmap=plt.cm.Blues,
+#    normalize="true")
 
-disp.ax_.set_title("Normalized Confusion Matrix: BERT")
-print(disp.confusion_matrix)
-plt.savefig("bert_confusion.png")
-plt.show()
-
-
-print("Total time executing", time.time() - t1)
+# disp.ax_.set_title("Normalized Confusion Matrix: BERT")
+# print(disp.confusion_matrix)
+# plt.savefig("bert_confusion.png")
+# plt.show()
+#
+#
+# print("Total time executing", time.time() - t1)
