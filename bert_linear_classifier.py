@@ -24,11 +24,11 @@ max_length = 128
 tokenizer = AutoTokenizer.from_pretrained('bert-base-cased')
 dataset = dataset.map(lambda e: tokenizer(e['text'], truncation=True, padding='max_length'), batched=True)
 dataset.set_format(type='torch', columns=['input_ids', 'token_type_ids', 'attention_mask', 'label'])
-dataloader = torch.utils.data.DataLoader(dataset, batch_size=32)
 
 # creating train, test, validation
 train = dataset["train"]
 test = dataset["test"]
 validation = dataset["validation"]
+train_data_loader = torch.utils.data.DataLoader(train, batch_size=32)
 
-
+print(next(iter(train_data_loader)))
